@@ -75,7 +75,7 @@
     "analysisContents1": "本网站使用谷歌的访问分析工具“Google Analytics”。 此 Google Analytics 使用 cookie 来收集数据。 这些数据是匿名收集的，无法识别个人身份。",
     "analysisContents2": "此功能可以通过使用 <1>“停用Google Analytics（分析）”浏览器插件</1> 或禁用 cookie 来拒绝收集，因此请检查您的浏览器设置。 有关此协议的详细信息，请参阅 <3>Google Analytics（分析）服务条款</3> 页面和 <5>Google 隐私权和条款</5> 页面。",
     "analysisTitle": "关于访问分析工具",
-    "developmentContents": "源代码发布在 GitHub 上。 我们期待您的问题和拉取请求。",
+    "developmentContents": "由 iMasanari 开发。源代码发布在 GitHub 上。我们期待您的问题和拉取请求。",
     "developmentTitle": "发展",
     "mainDescription": "这是一个网络应用程序，可让您轻松打印纸牌游戏代理（复印卡）。 它支持 PC 和智能手机。",
     "mainTitle": "在网络上轻松创建代理卡",

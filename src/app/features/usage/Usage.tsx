@@ -132,22 +132,6 @@ const Usage = () => {
             </>
           )}
         </section>
-        {i18n.language === 'ja' && (
-          <section>
-            <Title>
-              宣伝
-            </Title>
-            <Typography gutterBottom>
-              モンスターハンターWildsのスキルシミュレーターを開発しました。<br />
-              こちらもよろしくお願いいたします。
-            </Typography>
-            <Typography gutterBottom>
-              <Link href="https://mhwilds-simulator.imasanari.dev" target="_blank" rel="noopener">
-                https://mhwilds-simulator.imasanari.dev
-              </Link>
-            </Typography>
-          </section>
-        )}
         <section css={sectionStyle}>
           <Title>
             {t('Usage.aboutCardSizeTitle', 'カードサイズについて')}
@@ -223,23 +207,6 @@ const Usage = () => {
         </section>
         <section css={sectionStyle}>
           <Title>
-            {t('Usage.developmentTitle', '開発')}
-          </Title>
-          <Typography gutterBottom>
-            {t('Usage.developmentContents', 'GitHub にて、ソースコードを公開しています。issue やプルリクをお待ちしております。')}
-          </Typography>
-          <a href="https://github.com/iMasanari/proxy-card-print" target="_blank" rel="noopener">
-            <img
-              css={css`max-width: 100%;`}
-              width="442"
-              height="109"
-              src="https://gh-card.dev/repos/iMasanari/proxy-card-print.svg"
-              alt="iMasanari/proxy-card-print - GitHub"
-            />
-          </a>
-        </section>
-        <section css={sectionStyle}>
-          <Title>
             {t('Usage.analysisTitle', 'アクセス解析ツールについて')}
           </Title>
           <Typography gutterBottom>
@@ -274,6 +241,24 @@ const Usage = () => {
             </Typography>
           </section>
         )}
+        <section css={sectionStyle}>
+          <Title>
+            development
+          </Title>
+          <Typography gutterBottom>
+            Original code by iMasanari.<br />
+            The source code is available on GitHub. We look forward to issues and pull requests.
+          </Typography>
+          <a href="https://github.com/iMasanari/proxy-card-print" target="_blank" rel="noopener">
+            <img
+              css={css`max-width: 100%;`}
+              width="442"
+              height="109"
+              src="https://gh-card.dev/repos/iMasanari/proxy-card-print.svg"
+              alt="iMasanari/proxy-card-print - GitHub"
+            />
+          </a>
+        </section>
       </Container>
     </div>
   )

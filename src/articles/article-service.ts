@@ -1,9 +1,12 @@
 import { createClient } from 'microcms-js-sdk'
 
-const client = createClient({
-  serviceDomain: import.meta.env.MICROCMS_SERVICE_DOMAIN,
-  apiKey: import.meta.env.MICROCMS_API_KEY,
-})
+// microCMS設定が存在しない場合はnullにする
+const client = import.meta.env.MICROCMS_SERVICE_DOMAIN && import.meta.env.MICROCMS_API_KEY 
+  ? createClient({
+      serviceDomain: import.meta.env.MICROCMS_SERVICE_DOMAIN,
+      apiKey: import.meta.env.MICROCMS_API_KEY,
+    })
+  : null
 
 interface ResultList<T> {
   contents: T[]
@@ -25,6 +28,11 @@ export interface Article {
 }
 
 export const getPosts = async () => {
+  // microCMS設定がない場合は空配列を返す
+  if (!client) {
+    return []
+  }
+  
   // TODO 100件上限対応
   const res = await client.get<ResultList<Article>>({ endpoint: 'articles' })
 
@@ -32,6 +40,19 @@ export const getPosts = async () => {
 }
 
 export const getPost = async (contentId: string, draftKey?: string) => {
+  // microCMS設定がない場合はダミーデータを返す
+  if (!client) {
+    return {
+      id: contentId,
+      createdAt: '',
+      updatedAt: '',
+      publishedAt: '',
+      revisedAt: '',
+      title: 'Article not available',
+      content: 'microCMS configuration is not available.',
+    } as Article
+  }
+  
   const res = await client.get<Article>({
     endpoint: 'articles',
     contentId,

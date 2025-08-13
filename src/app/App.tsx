@@ -1,14 +1,16 @@
 import { css, Theme } from '@emotion/react'
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import { useTranslation } from 'react-i18next'
 import Cards from './features/cards/Cards'
-import cardsReducer, { CardsState } from './features/cards/cardsReducer'
+import cardsReducer, { CardsState, addCardsAction } from './features/cards/cardsReducer'
+import { useExternalCards } from './features/external/useExternalCards'
 import Maybe from './features/maybe/Maybe'
 import Preview from './features/preview/Preview'
 import { usePreviewData } from './features/preview/previewHooks'
 import Settings from './features/settings/Settings'
 import settingsReducer, { SettingsState } from './features/settings/settingsReducer'
 import Usage from './features/usage/Usage'
+import { useAction } from './common/hooks/state'
 
 const appStyle = (theme: Theme) => css`
   ${theme.breakpoints.up('sm')} {
@@ -79,6 +81,21 @@ const App = () => {
   const [settingsForm, settingsDispatch] = useReducer(settingsReducer, intiSettings)
   const [cardsForm, cardsDispatch] = useReducer(cardsReducer, initCards)
   const { i18n } = useTranslation()
+  
+  const { cards: externalCards, isExternalLoad, error: externalError } = useExternalCards()
+  const addCards = useAction(addCardsAction, cardsDispatch)
+
+  useEffect(() => {
+    if (externalCards.length > 0 && isExternalLoad) {
+      addCards(externalCards)
+    }
+  }, [externalCards, isExternalLoad, addCards])
+
+  useEffect(() => {
+    if (externalError) {
+      console.error('External card loading error:', externalError)
+    }
+  }, [externalError])
 
   const data = usePreviewData(settingsForm, cardsForm)
 
